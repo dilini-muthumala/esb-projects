@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<artifacts>
+    <artifact name="MemberService" groupId="com.wso2.MemberServiceConfigProject.proxy-service" version="1.0.0" type="synapse/proxy-service" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/proxy-services/MemberService.xml</file>
+    </artifact>
+    <artifact name="PersonService" groupId="com.wso2.MemberServiceConfigProject.proxy-service" version="1.0.0" type="synapse/proxy-service" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/proxy-services/PersonService.xml</file>
+    </artifact>
+</artifacts>

@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<esb:EsbDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:esb="http:///org/wso2/developerstudio/eclipse/gmf/esb">
+  <server type="PROXY">
+    <children xsi:type="esb:ProxyService" name="MemberService" transports="http,https" wsdlType="INLINE" wsdlXML="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;wsdl:definitions xmlns:wsdl=&quot;http://schemas.xmlsoap.org/wsdl/&quot;&#xA;                  xmlns:ns1=&quot;http://org.apache.axis2/xsd&quot;&#xA;                  xmlns:ns=&quot;http://sample.wso2.com&quot;&#xA;                  xmlns:wsaw=&quot;http://www.w3.org/2006/05/addressing/wsdl&quot;&#xA;                  xmlns:http=&quot;http://schemas.xmlsoap.org/wsdl/http/&quot;&#xA;                  xmlns:ax21=&quot;http://sample.wso2.com/xsd&quot;&#xA;                  xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot;&#xA;                  xmlns:mime=&quot;http://schemas.xmlsoap.org/wsdl/mime/&quot;&#xA;                  xmlns:soap=&quot;http://schemas.xmlsoap.org/wsdl/soap/&quot;&#xA;                  xmlns:soap12=&quot;http://schemas.xmlsoap.org/wsdl/soap12/&quot;&#xA;                  targetNamespace=&quot;http://sample.wso2.com&quot;>&#xA;   &lt;wsdl:types>&#xA;      &lt;xs:schema xmlns:ax22=&quot;http://sample.wso2.com/xsd&quot;&#xA;                 attributeFormDefault=&quot;qualified&quot;&#xA;                 elementFormDefault=&quot;qualified&quot;&#xA;                 targetNamespace=&quot;http://sample.wso2.com&quot;>&#xA;         &lt;xs:import namespace=&quot;http://sample.wso2.com/xsd&quot;/>&#xA;         &lt;xs:element name=&quot;getMemberDetails&quot;>&#xA;            &lt;xs:complexType>&#xA;               &lt;xs:sequence>&#xA;                  &lt;xs:element minOccurs=&quot;0&quot; name=&quot;empId&quot; nillable=&quot;true&quot; type=&quot;xs:string&quot;/>&#xA;&#x9;&#x9;  &lt;xs:element minOccurs=&quot;0&quot; name=&quot;nicNo&quot; nillable=&quot;true&quot; type=&quot;xs:string&quot;/>&#xA;               &lt;/xs:sequence>&#xA;            &lt;/xs:complexType>&#xA;         &lt;/xs:element>&#xA;         &lt;xs:element name=&quot;getMemberDetailsResponse&quot;>&#xA;            &lt;xs:complexType>&#xA;               &lt;xs:sequence>&#xA;                  &lt;xs:element minOccurs=&quot;0&quot;&#xA;                              name=&quot;return&quot;&#xA;                              nillable=&quot;true&quot;&#xA;                              type=&quot;ax21:Member&quot;/>&#xA;               &lt;/xs:sequence>&#xA;            &lt;/xs:complexType>&#xA;         &lt;/xs:element>&#xA;      &lt;/xs:schema>&#xA;      &lt;xs:schema attributeFormDefault=&quot;qualified&quot;&#xA;                 elementFormDefault=&quot;qualified&quot;&#xA;                 targetNamespace=&quot;http://sample.wso2.com/xsd&quot;>&#xA;         &lt;xs:complexType name=&quot;Member&quot;>&#xA;            &lt;xs:sequence>&#xA;               &lt;xs:element minOccurs=&quot;0&quot; name=&quot;fName&quot; nillable=&quot;true&quot; type=&quot;xs:string&quot;/>&#xA;&#x9;       &lt;xs:element minOccurs=&quot;0&quot; name=&quot;lName&quot; nillable=&quot;true&quot; type=&quot;xs:string&quot;/>&#xA;               &lt;xs:element minOccurs=&quot;0&quot; name=&quot;salary&quot; type=&quot;xs:int&quot;/>&#xA;               &lt;xs:element minOccurs=&quot;0&quot; name=&quot;age&quot; type=&quot;xs:int&quot;/>&#xA;            &lt;/xs:sequence>&#xA;         &lt;/xs:complexType>&#xA;      &lt;/xs:schema>&#xA;   &lt;/wsdl:types>&#xA;   &lt;wsdl:message name=&quot;getMemberDetailsRequest&quot;>&#xA;      &lt;wsdl:part name=&quot;parameters&quot; element=&quot;ns:getMemberDetails&quot;/>&#xA;   &lt;/wsdl:message>&#xA;   &lt;wsdl:message name=&quot;getMemberDetailsResponse&quot;>&#xA;      &lt;wsdl:part name=&quot;parameters&quot; element=&quot;ns:getMemberDetailsResponse&quot;/>&#xA;   &lt;/wsdl:message>&#xA;   &lt;wsdl:portType name=&quot;MemberServicePortType&quot;>&#xA;      &lt;wsdl:operation name=&quot;getMemberDetails&quot;>&#xA;         &lt;wsdl:input message=&quot;ns:getMemberDetailsRequest&quot;&#xA;                     wsaw:Action=&quot;urn:getMemberDetails&quot;/>&#xA;         &lt;wsdl:output message=&quot;ns:getMemberDetailsResponse&quot;&#xA;                      wsaw:Action=&quot;urn:getMemberDetailsResponse&quot;/>&#xA;      &lt;/wsdl:operation>&#xA;   &lt;/wsdl:portType>&#xA;   &lt;wsdl:binding name=&quot;MemberServiceSoap11Binding&quot; type=&quot;ns:MemberServicePortType&quot;>&#xA;      &lt;soap:binding transport=&quot;http://schemas.xmlsoap.org/soap/http&quot; style=&quot;document&quot;/>&#xA;      &lt;wsdl:operation name=&quot;getMemberDetails&quot;>&#xA;         &lt;soap:operation soapAction=&quot;urn:getMemberDetails&quot; style=&quot;document&quot;/>&#xA;         &lt;wsdl:input>&#xA;            &lt;soap:body use=&quot;literal&quot;/>&#xA;         &lt;/wsdl:input>&#xA;         &lt;wsdl:output>&#xA;            &lt;soap:body use=&quot;literal&quot;/>&#xA;         &lt;/wsdl:output>&#xA;      &lt;/wsdl:operation>&#xA;   &lt;/wsdl:binding>&#xA;   &lt;wsdl:binding name=&quot;MemberServiceSoap12Binding&quot; type=&quot;ns:MemberServicePortType&quot;>&#xA;      &lt;soap12:binding transport=&quot;http://schemas.xmlsoap.org/soap/http&quot; style=&quot;document&quot;/>&#xA;      &lt;wsdl:operation name=&quot;getMemberDetails&quot;>&#xA;         &lt;soap12:operation soapAction=&quot;urn:getMemberDetails&quot; style=&quot;document&quot;/>&#xA;         &lt;wsdl:input>&#xA;            &lt;soap12:body use=&quot;literal&quot;/>&#xA;         &lt;/wsdl:input>&#xA;         &lt;wsdl:output>&#xA;            &lt;soap12:body use=&quot;literal&quot;/>&#xA;         &lt;/wsdl:output>&#xA;      &lt;/wsdl:operation>&#xA;   &lt;/wsdl:binding>&#xA;   &lt;wsdl:binding name=&quot;MemberServiceHttpBinding&quot; type=&quot;ns:MemberServicePortType&quot;>&#xA;      &lt;http:binding verb=&quot;POST&quot;/>&#xA;      &lt;wsdl:operation name=&quot;getMemberDetails&quot;>&#xA;         &lt;http:operation location=&quot;getMemberDetails&quot;/>&#xA;         &lt;wsdl:input>&#xA;            &lt;mime:content type=&quot;text/xml&quot; part=&quot;parameters&quot;/>&#xA;         &lt;/wsdl:input>&#xA;         &lt;wsdl:output>&#xA;            &lt;mime:content type=&quot;text/xml&quot; part=&quot;parameters&quot;/>&#xA;         &lt;/wsdl:output>&#xA;      &lt;/wsdl:operation>&#xA;   &lt;/wsdl:binding>&#xA;   &lt;wsdl:service name=&quot;MemberService&quot;>&#xA;      &lt;wsdl:port name=&quot;MemberServiceHttpSoap11Endpoint&quot;&#xA;                 binding=&quot;ns:MemberServiceSoap11Binding&quot;>&#xA;         &lt;soap:address location=&quot;http://localhost:8080/axis2/services/MemberService&quot;/>&#xA;      &lt;/wsdl:port>&#xA;      &lt;wsdl:port name=&quot;MemberServiceHttpSoap12Endpoint&quot;&#xA;                 binding=&quot;ns:MemberServiceSoap12Binding&quot;>&#xA;         &lt;soap12:address location=&quot;http://localhost:8080/axis2/services/MemberService&quot;/>&#xA;      &lt;/wsdl:port>&#xA;      &lt;wsdl:port name=&quot;MemberServiceHttpEndpoint&quot;&#xA;                 binding=&quot;ns:MemberServiceHttpBinding&quot;>&#xA;         &lt;http:address location=&quot;http://localhost:8080/axis2/services/MemberService&quot;/>&#xA;      &lt;/wsdl:port>&#xA;   &lt;/wsdl:service>&#xA;&lt;/wsdl:definitions>">
+      <outputConnector>
+        <outgoingLink target="//@server/@children.0/@container/@sequenceAndEndpointContainer/@mediatorFlow/@children.0/@inputConnector"/>
+      </outputConnector>
+      <inputConnector incomingLinks="//@server/@children.0/@container/@sequenceAndEndpointContainer/@mediatorFlow/@children.2/@OutputConnector/@outgoingLink"/>
+      <faultInputConnector/>
+      <outSequenceOutputConnector>
+        <outgoingLink target="//@server/@children.0/@container/@sequenceAndEndpointContainer/@mediatorFlow/@children.2/@InputConnector"/>
+      </outSequenceOutputConnector>
+      <container>
+        <sequenceAndEndpointContainer>
+          <mediatorFlow>
+            <children xsi:type="esb:CloneMediator">
+              <targets endpointType="NONE"/>
+              <targets endpointType="NONE"/>
+              <targetsOutputConnector>
+                <outgoingLink target="//@server/@children.0/@container/@sequenceAndEndpointContainer/@mediatorFlow/@children.0/@cloneContainer/@cloneTargetContainer.0/@mediatorFlow/@children.0/@inputConnector"/>
+              </targetsOutputConnector>
+              <targetsOutputConnector>
+                <outgoingLink target="//@server/@children.0/@container/@sequenceAndEndpointContainer/@mediatorFlow/@children.0/@cloneContainer/@cloneTargetContainer.1/@mediatorFlow/@children.0/@inputConnector"/>
+              </targetsOutputConnector>
+              <inputConnector incomingLinks="//@server/@children.0/@outputConnector/@outgoingLink"/>
+              <outputConnector>
+                <outgoingLink target="//@server/@children.0/@container/@sequenceAndEndpointContainer/@mediatorFlow/@children.1/@inputConnector"/>
+              </outputConnector>
+              <cloneContainer>
+                <cloneTargetContainer>
+                  <mediatorFlow>
+                    <children xsi:type="esb:PayloadFactoryMediator" description="personService" payload="&lt;p:getPersonDetails xmlns:p=&quot;http://samples.wso2.com&quot;>&lt;xs:nicNo xmlns:xs=&quot;http://samples.wso2.com&quot;>$1&lt;/xs:nicNo>&lt;/p:getPersonDetails>">
+                      <payloadKey prettyName="Sequence Key" keyName="Sequence Key" keyValue="/default/key" filters="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C7708000000100000000078"/>
+                      <args argumentType="Expression">
+                        <argumentExpression propertyValue="//sam:getMemberDetails/sam:nicNo" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C7708000000100000000174000373616D740016687474703A2F2F73616D706C652E77736F322E636F6D78"/>
+                      </args>
+                      <inputConnector incomingLinks="//@server/@children.0/@container/@sequenceAndEndpointContainer/@mediatorFlow/@children.0/@targetsOutputConnector.0/@outgoingLink"/>
+                      <outputConnector>
+                        <outgoingLink target="//@server/@children.0/@container/@sequenceAndEndpointContainer/@mediatorFlow/@children.0/@cloneContainer/@cloneTargetContainer.0/@mediatorFlow/@children.1/@inputConnector"/>
+                      </outputConnector>
+                    </children>
+                    <children xsi:type="esb:CallMediator">
+                      <inputConnector incomingLinks="//@server/@children.0/@container/@sequenceAndEndpointContainer/@mediatorFlow/@children.0/@cloneContainer/@cloneTargetContainer.0/@mediatorFlow/@children.0/@outputConnector/@outgoingLink"/>
+                      <outputConnector/>
+                      <endpointOutputConnector>
+                        <outgoingLink target="//@server/@children.0/@container/@sequenceAndEndpointContainer/@mediatorFlow/@children.0/@cloneContainer/@cloneTargetContainer.0/@mediatorFlow/@children.1/@mediatorFlow/@children.0/@inputConnector"/>
+                      </endpointOutputConnector>
+                      <mediatorFlow>
+                        <children xsi:type="esb:AddressEndPoint" suspendMaximumDuration="9223372036854775807" suspendProgressionFactor="1.0" URI="http://localhost:9764/services/PersonService/">
+                          <reliableMessagingPolicy prettyName="ReliableMessagingPolicy Key" keyName="ReliableMessagingPolicy Key" keyValue="/default/key" filters="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C7708000000100000000078"/>
+                          <securityPolicy prettyName="SecurityPolicy Key" keyName="SecurityPolicy Key" keyValue="/default/key" filters="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C7708000000100000000078"/>
+                          <inputConnector incomingLinks="//@server/@children.0/@container/@sequenceAndEndpointContainer/@mediatorFlow/@children.0/@cloneContainer/@cloneTargetContainer.0/@mediatorFlow/@children.1/@endpointOutputConnector/@outgoingLink"/>
+                        </children>
+                      </mediatorFlow>
+                      <endpointRegistrykey prettyName="Endpoint Key" keyName="Endpoint Key" keyValue="/default/key" filters="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C7708000000100000000078"/>
+                      <endpointXpath prettyName="Endpoint XPath" propertyName="expression" propertyValue="/default/expression" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C7708000000100000000078"/>
+                    </children>
+                  </mediatorFlow>
+                </cloneTargetContainer>
+                <cloneTargetContainer>
+                  <mediatorFlow>
+                    <children xsi:type="esb:PayloadFactoryMediator" description="employeeService" payload="&lt;p:getEmployeeDetails xmlns:p=&quot;http://sample.wso2.com&quot;>&lt;xs:empId xmlns:xs=&quot;http://sample.wso2.com&quot;>$1&lt;/xs:empId>&lt;/p:getEmployeeDetails>">
+                      <payloadKey prettyName="Sequence Key" keyName="Sequence Key" keyValue="/default/key" filters="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C7708000000100000000078"/>
+                      <args argumentType="Expression">
+                        <argumentExpression propertyValue="//sam:getMemberDetails/sam:empId" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C7708000000100000000174000373616D740016687474703A2F2F73616D706C652E77736F322E636F6D78"/>
+                      </args>
+                      <inputConnector incomingLinks="//@server/@children.0/@container/@sequenceAndEndpointContainer/@mediatorFlow/@children.0/@targetsOutputConnector.1/@outgoingLink"/>
+                      <outputConnector>
+                        <outgoingLink target="//@server/@children.0/@container/@sequenceAndEndpointContainer/@mediatorFlow/@children.0/@cloneContainer/@cloneTargetContainer.1/@mediatorFlow/@children.1/@inputConnector"/>
+                      </outputConnector>
+                    </children>
+                    <children xsi:type="esb:CallMediator">
+                      <inputConnector incomingLinks="//@server/@children.0/@container/@sequenceAndEndpointContainer/@mediatorFlow/@children.0/@cloneContainer/@cloneTargetContainer.1/@mediatorFlow/@children.0/@outputConnector/@outgoingLink"/>
+                      <outputConnector/>
+                      <endpointOutputConnector>
+                        <outgoingLink target="//@server/@children.0/@container/@sequenceAndEndpointContainer/@mediatorFlow/@children.0/@cloneContainer/@cloneTargetContainer.1/@mediatorFlow/@children.1/@mediatorFlow/@children.0/@inputConnector"/>
+                      </endpointOutputConnector>
+                      <mediatorFlow>
+                        <children xsi:type="esb:AddressEndPoint" suspendMaximumDuration="9223372036854775807" suspendProgressionFactor="1.0" URI="http://localhost:9764/services/EmployeeService/">
+                          <reliableMessagingPolicy prettyName="ReliableMessagingPolicy Key" keyName="ReliableMessagingPolicy Key" keyValue="/default/key" filters="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C7708000000100000000078"/>
+                          <securityPolicy prettyName="SecurityPolicy Key" keyName="SecurityPolicy Key" keyValue="/default/key" filters="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C7708000000100000000078"/>
+                          <inputConnector incomingLinks="//@server/@children.0/@container/@sequenceAndEndpointContainer/@mediatorFlow/@children.0/@cloneContainer/@cloneTargetContainer.1/@mediatorFlow/@children.1/@endpointOutputConnector/@outgoingLink"/>
+                        </children>
+                      </mediatorFlow>
+                      <endpointRegistrykey prettyName="Endpoint Key" keyName="Endpoint Key" keyValue="/default/key" filters="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C7708000000100000000078"/>
+                      <endpointXpath prettyName="Endpoint XPath" propertyName="expression" propertyValue="/default/expression" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C7708000000100000000078"/>
+                    </children>
+                  </mediatorFlow>
+                </cloneTargetContainer>
+              </cloneContainer>
+            </children>
+            <children xsi:type="esb:AggregateMediator">
+              <correlationExpression prettyName="Correlation Expression" propertyName="expression" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C7708000000100000000078"/>
+              <completionMinMessagesExpression prettyName="completionMinMessagesExpression" propertyName="expression" propertyValue="/default/expression" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C7708000000100000000078"/>
+              <completionMaxMessagesExpression prettyName="completionMaxMessagesExpression" propertyName="expression" propertyValue="/default/expression" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C7708000000100000000078"/>
+              <inputConnector incomingLinks="//@server/@children.0/@container/@sequenceAndEndpointContainer/@mediatorFlow/@children.0/@outputConnector/@outgoingLink"/>
+              <outputConnector/>
+              <onCompleteOutputConnector>
+                <outgoingLink target="//@server/@children.0/@container/@sequenceAndEndpointContainer/@mediatorFlow/@children.1/@mediatorFlow/@children.0/@inputConnector"/>
+              </onCompleteOutputConnector>
+              <mediatorFlow>
+                <children xsi:type="esb:PayloadFactoryMediator" payload="&lt;ns:getMemberDetailsResponse xmlns:ns=&quot;http://sample.wso2.com&quot;>&lt;ns:return xmlns:ax2464=&quot;http://sample.wso2.com/xsd&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:type=&quot;ax2464:Member&quot;>&#xA;&#x9;&lt;ax2464:fName>$1&lt;/ax2464:fName>&#xA;&#x9;&lt;ax2464:lName>Muthumala&lt;/ax2464:lName>&#xA;&#x9;&lt;ax2464:salary>$2&lt;/ax2464:salary>&#xA;&#x9;&lt;ax2464:age>26&lt;/ax2464:age>&lt;/ns:return>&#xA;&lt;/ns:getMemberDetailsResponse>">
+                  <payloadKey prettyName="Sequence Key" keyName="Sequence Key" keyValue="/default/key" filters="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C7708000000100000000078"/>
+                  <args argumentType="Expression">
+                    <argumentExpression prettyName="Argument Expression" propertyName="Argument Expression" propertyValue="//ns:getPersonDetailsResponse/ns:return/ax2464:fName" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C7708000000100000000274000661783234363474001B687474703A2F2F73616D706C65732E77736F322E636F6D2F7873647400026E73740017687474703A2F2F73616D706C65732E77736F322E636F6D78"/>
+                  </args>
+                  <args argumentType="Expression">
+                    <argumentExpression prettyName="Argument Expression" propertyName="Argument Expression" propertyValue="//ns1:getEmployeeDetailsResponse/ns1:return/ax2466:salary" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C770800000010000000027400036E7331740016687474703A2F2F73616D706C652E77736F322E636F6D74000661783234363674001A687474703A2F2F73616D706C652E77736F322E636F6D2F78736478"/>
+                  </args>
+                  <inputConnector incomingLinks="//@server/@children.0/@container/@sequenceAndEndpointContainer/@mediatorFlow/@children.1/@onCompleteOutputConnector/@outgoingLink"/>
+                  <outputConnector>
+                    <outgoingLink target="//@server/@children.0/@container/@sequenceAndEndpointContainer/@mediatorFlow/@children.1/@mediatorFlow/@children.1/@inputConnector"/>
+                  </outputConnector>
+                </children>
+                <children xsi:type="esb:RespondMediator">
+                  <inputConnector incomingLinks="//@server/@children.0/@container/@sequenceAndEndpointContainer/@mediatorFlow/@children.1/@mediatorFlow/@children.0/@outputConnector/@outgoingLink"/>
+                  <outputConnector/>
+                </children>
+              </mediatorFlow>
+              <aggregationExpression propertyValue="/s11:Envelope/s11:Body/child::*[position()=1] | /s12:Envelope/s12:Body/child::*[position()=1]" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C77080000001000000002740003733132740027687474703A2F2F7777772E77332E6F72672F323030332F30352F736F61702D656E76656C6F7065740003733131740029687474703A2F2F736368656D61732E786D6C736F61702E6F72672F736F61702F656E76656C6F70652F78"/>
+              <sequenceKey prettyName="Sequence Key" keyName="Sequence Key" keyValue="/default/key" filters="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C7708000000100000000078"/>
+            </children>
+            <children xsi:type="esb:SendMediator" Reverse="true">
+              <InputConnector incomingLinks="//@server/@children.0/@outSequenceOutputConnector/@outgoingLink"/>
+              <OutputConnector>
+                <outgoingLink target="//@server/@children.0/@inputConnector"/>
+              </OutputConnector>
+              <StaticReceivingSequence prettyName="Static" keyName="receive" keyValue="/default/sequence" filters="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C770800000010000000017400196F72672E77736F322E636172626F6E2E6D6564696174797065737200136A6176612E7574696C2E41727261794C6973747881D21D99C7619D03000149000473697A6578700000000177040000000A74001D6170706C69636174696F6E2F766E642E77736F322E73657175656E63657878"/>
+              <DynamicReceivingSequence prettyName="Dynamic" propertyName="receive" propertyValue="/default/xpath" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C7708000000100000000078"/>
+              <endpointOutputConnector/>
+              <mediatorFlow/>
+            </children>
+          </mediatorFlow>
+        </sequenceAndEndpointContainer>
+        <faultContainer>
+          <mediatorFlow/>
+        </faultContainer>
+      </container>
+      <inSequenceKey prettyName="In Sequence Reference" keyName="key" keyValue="/default/key" filters="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C7708000000100000000078"/>
+      <inSequenceOnError prettyName="In Sequence On Error Reference" keyName="key" filters="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C770800000010000000017400196F72672E77736F322E636172626F6E2E6D6564696174797065737200136A6176612E7574696C2E41727261794C6973747881D21D99C7619D03000149000473697A6578700000000177040000000A74001D6170706C69636174696F6E2F766E642E77736F322E73657175656E63657878"/>
+      <outSequenceKey prettyName="Out Sequence Reference" keyName="key" keyValue="/default/key" filters="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C7708000000100000000078"/>
+      <outSequenceOnError prettyName="Out Sequence On Error Reference" keyName="key" filters="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C770800000010000000017400196F72672E77736F322E636172626F6E2E6D6564696174797065737200136A6176612E7574696C2E41727261794C6973747881D21D99C7619D03000149000473697A6578700000000177040000000A74001D6170706C69636174696F6E2F766E642E77736F322E73657175656E63657878"/>
+      <faultSequenceKey prettyName="Fault Sequence Reference" keyName="key" keyValue="/default/key" filters="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C7708000000100000000078"/>
+      <faultSequenceOnError prettyName="Fault Sequence On Error Reference" keyName="key" filters="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C770800000010000000017400196F72672E77736F322E636172626F6E2E6D6564696174797065737200136A6176612E7574696C2E41727261794C6973747881D21D99C7619D03000149000473697A6578700000000177040000000A74001D6170706C69636174696F6E2F766E642E77736F322E73657175656E63657878"/>
+      <endpointKey prettyName="Endpoint Reference" keyName="key" keyValue="/default/key" filters="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C7708000000100000000078"/>
+      <wsdlKey prettyName="WSDL Reference" keyName="key" keyValue="/default/key" filters="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C770800000010000000017400196F72672E77736F322E636172626F6E2E6D6564696174797065737200136A6176612E7574696C2E41727261794C6973747881D21D99C7619D03000149000473697A6578700000000177040000000A7400146170706C69636174696F6E2F7773646C2B786D6C7878"/>
+      <OnError prettyName="On Error Sequence Reference" keyName="key" filters="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C7708000000100000000078"/>
+    </children>
+  </server>
+</esb:EsbDiagram>

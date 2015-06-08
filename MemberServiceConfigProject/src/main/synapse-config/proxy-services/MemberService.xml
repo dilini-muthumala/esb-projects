@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<proxy xmlns="http://ws.apache.org/ns/synapse" name="MemberService" transports="http https" startOnLoad="true" trace="disable">
+    <target>
+        <inSequence>
+            <clone>
+                <target>
+                    <sequence>
+                        <payloadFactory media-type="xml" description="personService">
+                            <format>
+                                <p:getPersonDetails xmlns:p="http://samples.wso2.com">
+                                    <xs:nicNo xmlns:xs="http://samples.wso2.com">$1</xs:nicNo>
+                                </p:getPersonDetails>
+                            </format>
+                            <args>
+                                <arg xmlns:sam="http://sample.wso2.com" evaluator="xml" expression="//sam:getMemberDetails/sam:nicNo"/>
+                            </args>
+                        </payloadFactory>
+                        <call>
+                            <endpoint>
+                                <address uri="http://localhost:9764/services/PersonService/"/>
+                            </endpoint>
+                        </call>
+                    </sequence>
+                </target>
+                <target>
+                    <sequence>
+                        <payloadFactory media-type="xml" description="employeeService">
+                            <format>
+                                <p:getEmployeeDetails xmlns:p="http://sample.wso2.com">
+                                    <xs:empId xmlns:xs="http://sample.wso2.com">$1</xs:empId>
+                                </p:getEmployeeDetails>
+                            </format>
+                            <args>
+                                <arg xmlns:sam="http://sample.wso2.com" evaluator="xml" expression="//sam:getMemberDetails/sam:empId"/>
+                            </args>
+                        </payloadFactory>
+                        <call>
+                            <endpoint>
+                                <address uri="http://localhost:9764/services/EmployeeService/"/>
+                            </endpoint>
+                        </call>
+                    </sequence>
+                </target>
+            </clone>
+            <aggregate>
+                <completeCondition>
+                    <messageCount min="-1" max="-1"/>
+                </completeCondition>
+                <onComplete xmlns:s12="http://www.w3.org/2003/05/soap-envelope" xmlns:s11="http://schemas.xmlsoap.org/soap/envelope/" expression="/s11:Envelope/s11:Body/child::*[position()=1] | /s12:Envelope/s12:Body/child::*[position()=1]">
+                    <payloadFactory media-type="xml">
+                        <format>
+                            <ns:getMemberDetailsResponse xmlns:ns="http://sample.wso2.com">
+                                <ns:return xmlns:ax2464="http://sample.wso2.com/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ax2464:Member">
+                                    <ax2464:fName>$1</ax2464:fName>
+                                    <ax2464:lName>Muthumala</ax2464:lName>
+                                    <ax2464:salary>$2</ax2464:salary>
+                                    <ax2464:age>26</ax2464:age>
+                                </ns:return>
+                            </ns:getMemberDetailsResponse>
+                        </format>
+                        <args>
+                            <arg xmlns:ax2464="http://samples.wso2.com/xsd" xmlns:ns="http://samples.wso2.com" evaluator="xml" expression="//ns:getPersonDetailsResponse/ns:return/ax2464:fName"/>
+                            <arg xmlns:ns1="http://sample.wso2.com" xmlns:ax2466="http://sample.wso2.com/xsd" evaluator="xml" expression="//ns1:getEmployeeDetailsResponse/ns1:return/ax2466:salary"/>
+                        </args>
+                    </payloadFactory>
+                    <respond/>
+                </onComplete>
+            </aggregate>
+        </inSequence>
+        <outSequence>
+            <send/>
+        </outSequence>
+        <faultSequence/>
+    </target>
+    <publishWSDL>
+        <wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns1="http://org.apache.axis2/xsd" xmlns:ns="http://sample.wso2.com" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:ax21="http://sample.wso2.com/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://sample.wso2.com">
+            <wsdl:types>
+                <xs:schema xmlns:ax22="http://sample.wso2.com/xsd" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://sample.wso2.com">
+                    <xs:import namespace="http://sample.wso2.com/xsd"/>
+                    <xs:element name="getMemberDetails">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element minOccurs="0" name="empId" nillable="true" type="xs:string"/>
+                                <xs:element minOccurs="0" name="nicNo" nillable="true" type="xs:string"/>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="getMemberDetailsResponse">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element minOccurs="0" name="return" nillable="true" type="ax21:Member"/>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                </xs:schema>
+                <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://sample.wso2.com/xsd">
+                    <xs:complexType name="Member">
+                        <xs:sequence>
+                            <xs:element minOccurs="0" name="fName" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="lName" nillable="true" type="xs:string"/>
+                            <xs:element minOccurs="0" name="salary" type="xs:int"/>
+                            <xs:element minOccurs="0" name="age" type="xs:int"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:schema>
+            </wsdl:types>
+            <wsdl:message name="getMemberDetailsRequest">
+                <wsdl:part name="parameters" element="ns:getMemberDetails"/>
+            </wsdl:message>
+            <wsdl:message name="getMemberDetailsResponse">
+                <wsdl:part name="parameters" element="ns:getMemberDetailsResponse"/>
+            </wsdl:message>
+            <wsdl:portType name="MemberServicePortType">
+                <wsdl:operation name="getMemberDetails">
+                    <wsdl:input message="ns:getMemberDetailsRequest" wsaw:Action="urn:getMemberDetails"/>
+                    <wsdl:output message="ns:getMemberDetailsResponse" wsaw:Action="urn:getMemberDetailsResponse"/>
+                </wsdl:operation>
+            </wsdl:portType>
+            <wsdl:binding name="MemberServiceSoap11Binding" type="ns:MemberServicePortType">
+                <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+                <wsdl:operation name="getMemberDetails">
+                    <soap:operation soapAction="urn:getMemberDetails" style="document"/>
+                    <wsdl:input>
+                        <soap:body use="literal"/>
+                    </wsdl:input>
+                    <wsdl:output>
+                        <soap:body use="literal"/>
+                    </wsdl:output>
+                </wsdl:operation>
+            </wsdl:binding>
+            <wsdl:binding name="MemberServiceSoap12Binding" type="ns:MemberServicePortType">
+                <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+                <wsdl:operation name="getMemberDetails">
+                    <soap12:operation soapAction="urn:getMemberDetails" style="document"/>
+                    <wsdl:input>
+                        <soap12:body use="literal"/>
+                    </wsdl:input>
+                    <wsdl:output>
+                        <soap12:body use="literal"/>
+                    </wsdl:output>
+                </wsdl:operation>
+            </wsdl:binding>
+            <wsdl:binding name="MemberServiceHttpBinding" type="ns:MemberServicePortType">
+                <http:binding verb="POST"/>
+                <wsdl:operation name="getMemberDetails">
+                    <http:operation location="getMemberDetails"/>
+                    <wsdl:input>
+                        <mime:content type="text/xml" part="parameters"/>
+                    </wsdl:input>
+                    <wsdl:output>
+                        <mime:content type="text/xml" part="parameters"/>
+                    </wsdl:output>
+                </wsdl:operation>
+            </wsdl:binding>
+            <wsdl:service name="MemberService">
+                <wsdl:port name="MemberServiceHttpSoap11Endpoint" binding="ns:MemberServiceSoap11Binding">
+                    <soap:address location="http://localhost:8080/axis2/services/MemberService"/>
+                </wsdl:port>
+                <wsdl:port name="MemberServiceHttpSoap12Endpoint" binding="ns:MemberServiceSoap12Binding">
+                    <soap12:address location="http://localhost:8080/axis2/services/MemberService"/>
+                </wsdl:port>
+                <wsdl:port name="MemberServiceHttpEndpoint" binding="ns:MemberServiceHttpBinding">
+                    <http:address location="http://localhost:8080/axis2/services/MemberService"/>
+                </wsdl:port>
+            </wsdl:service>
+        </wsdl:definitions>
+    </publishWSDL>
+</proxy>
